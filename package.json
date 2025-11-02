@@ -1,0 +1,22 @@
+{
+  "name": "thawth.me-ts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "rsbuild build",
+    "dev": "rsbuild dev --open",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@rsbuild/plugin-sass": "^1"
+  },
+  "devDependencies": {
+    "@bsgbryan/rnzlr": "link:@bsgbryan/rnzlr",
+    "@rsbuild/core": "^1",
+    "@rsbuild/plugin-react": "^1",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.2",
+    "typescript": "^5"
+  }
+}
