@@ -9,6 +9,15 @@ export default defineConfig({
   html: {
     template: './src/template.html',
     title: 'thawth.me',
+    tags: [{
+      tag: 'script',
+      append: false,
+      attrs: {
+        defer: true,
+        crossorigin: true,
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js',
+      },
+    }],
   },
   plugins: [
     pluginReact({

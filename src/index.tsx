@@ -1,7 +1,17 @@
 import { render } from "@bsgbryan/rnzlr"
 
-import Hello from "./Hello"
+const url = new URL(window.location.href)
+
+console.log('path', url.pathname)
 
 const container = document.querySelector('body > main')!
 
-render(Hello(), container)
+const load = async (path: string) => {
+	const component = (await import(`.${path}`)).default
+	render(component(), container)
+}
+
+if (url.pathname === '/') load('/root')
+else load(url.pathname)
+
+export default () => <p>index</p>
