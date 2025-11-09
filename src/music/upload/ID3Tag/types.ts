@@ -92,11 +92,11 @@ export type Encoder = {
 }
 
 export type OST = {
+	copyright: string
 	composer: string
 	console: Console
 	game: string
 	title: string
-	copyright: string
 }
 
 type Published = {
@@ -111,7 +111,7 @@ export type RemixOfOSTTrack = {
 	collection: PositionInCount
 	// copyright: string
 	cover_art: {
-		data: ArrayBuffer,
+		data: Uint16Array,
 		format: ImageFormat,
 	}
 	encoded_by: Encoder[],
