@@ -1,33 +1,28 @@
-import type { Encoder, ID3Tags, OST, RemixOfOSTTrack } from "./types"
+import artists from "../artists"
+import encoders from "../encoders"
+import titles from "../titles"
+import webpage from "../../webpage"
+
+import type { OST, RemixOfOSTTrack } from "../types"
+import type { ID3Tags } from "./types"
 
 export const process = (input: ID3Tags): RemixOfOSTTrack => {
 	const set = input.TPOS.data.split('/')
 	const track = input.TRCK.data.split('/')
-	const encoders: Encoder[] = input.TENC.data.split(',').map(e => {
-		const tokens = e.split('(')
-		const name = tokens[0]?.trim()!
-		const t = tokens[1]?.trim()
-		const email = t?.substring(0, t.length - 1)!
+	const title = titles(input)
 
-		return { name, email }
-	})
-	
-	const tokens = input.TIT2.data.split('(')
-	const remix = tokens[0]?.trim()
-	const t = tokens[1]?.trim()
-	const original = t?.substring(0, t.length - 1)
-	
 	const ost: OST = {
 		composer: input.TCOM.data,
 		console: input.TOPE.data,
 		copyright: input.TCOP.data,
 		game: input.TOAL.data,
-		title: original!,
+		title: title.original,
 	};
 
 	return {
+		accompaniment: input.TPE2.data,
 		album: input.TALB.data,
-		artist: input.TPE1.data,
+		artists: artists(input),
 		catalog_number: input.TXXX.data.data,
 		collection: {
 			position: parseInt(set[0]!),
@@ -37,17 +32,17 @@ export const process = (input: ID3Tags): RemixOfOSTTrack => {
 			format: input.APIC.data.format,
 			data: input.APIC.data.data,
 		},
-		encoded_by: encoders,
+		encoded_by: encoders(input),
 		ost,
 		published: {
 			by: input.TPUB.data,
 			year: parseInt(input.TYER.data),
 		},
-		title: remix!,
+		title: title.remix,
 		track: {
 			position: parseInt(track[0]!),
 			count: parseInt(track[1]!),
 		},
-		webpage: input.WOAR.data,
+		webpage: webpage(input),
 	}
 }

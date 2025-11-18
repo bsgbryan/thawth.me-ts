@@ -1,4 +1,6 @@
-enum TagName {
+import type { Console } from "../types"
+
+export enum TagName {
 	APIC = 'APIC',
 	COMM = 'COMM',
 	TALB = 'TALB',
@@ -23,11 +25,11 @@ enum TagName {
 	WXXX = 'WXXX',
 }
 
-enum ImageFormat {
+export enum ImageFormat {
 	png = 'image/png',
 }
 
-type Tag<D, N = TagName> = {
+export type Tag<D, N = TagName> = {
 	data: D
 	description: string
 	id: N
@@ -35,13 +37,13 @@ type Tag<D, N = TagName> = {
 }
 
 type ImageData = {
-	data: ArrayBuffer
+	data: Uint8Array
 	description: string
 	format: ImageFormat
 	type: string
 }
 
-type TextData = {
+export type TextData = {
 	language: string
 	short_description: string
 	text: string
@@ -53,72 +55,28 @@ type DescriptionData = {
 }
 
 export type ID3Tags = {
-	APIC: Tag<			ImageData, TagName.APIC>
-	COMM: Tag< 			 TextData, TagName.COMM>
-	TALB: Tag<	 			 string, TagName.TALB>
-	TCMP: Tag<	 			 string, TagName.TCMP>
-	TCOM: Tag<	 			 string, TagName.TCOM>
-	TCON: Tag<	 			 string, TagName.TCON>
-	TCOP: Tag<	 			 string, TagName.TCOP>
-	TENC: Tag<	 			 string, TagName.TENC>
-	TIT1: Tag<	 			 string, TagName.TIT1>
-	TIT2: Tag<	 			 string, TagName.TIT2>
-	TIT3: Tag<	 			 string, TagName.TIT3>
-	TOAL: Tag<	 			 string, TagName.TOAL>
-	TOPE: Tag<	 			Console, TagName.TOPE>
-	TPE1: Tag<	 			 string, TagName.TPE1>
-	TPE2: Tag<	 			 string, TagName.TPE2>
-	TPOS: Tag<	 			 string, TagName.TPOS>
-	TPUB: Tag<	 			 string, TagName.TPUB>
-	TRCK: Tag<	 			 string, TagName.TRCK>
-	TXXX: Tag<DescriptionData, TagName.TXXX>
-	TYER: Tag<	 			 string, TagName.TYER>
-	WOAR: Tag<	 			 string, TagName.WOAR>
-	WXXX: Tag<	 			 string, TagName.WXXX>
-}
+	APIC?: Tag<			 ImageData, TagName.APIC>
+	COMM?: Tag<			  TextData, TagName.COMM>
+	TALB?: Tag< 			 	string, TagName.TALB>
+	TCMP?: Tag< 			 	string, TagName.TCMP>
+	TCOM?: Tag< 			 	string, TagName.TCOM>
+	TCON?: Tag< 			 	string, TagName.TCON>
+	TCOP?: Tag< 			 	string, TagName.TCOP>
+	TENC?: Tag< 			 	string, TagName.TENC>
+	TIT1?: Tag< 			 	string, TagName.TIT1>
+	TIT2?: Tag< 			 	string, TagName.TIT2>
+	TIT3?: Tag< 			 	string, TagName.TIT3>
+	TOAL?: Tag< 			 	string, TagName.TOAL>
+	TOPE?: Tag< 			 Console, TagName.TOPE>
+	TPE1?: Tag< 			 	string, TagName.TPE1>
+	TPE2?: Tag< 			 	string, TagName.TPE2>
+	TPOS?: Tag< 			 	string, TagName.TPOS>
+	TPUB?: Tag< 			 	string, TagName.TPUB>
+	TRCK?: Tag< 			 	string, TagName.TRCK>
+	TXXX?: Tag<DescriptionData, TagName.TXXX>
+	TYER?: Tag<	 			  string, TagName.TYER>
+	WOAR?: Tag<	 			  string, TagName.WOAR>
+	WXXX?: Tag<	 			  string, TagName.WXXX>
 
-type PositionInCount = {
-	count: number
-	position: number
-}
-
-export enum Console {
-	SNES = 'SNES',
-}
-
-export type Encoder = {
-	name: string
-	email: string
-}
-
-export type OST = {
-	copyright: string
-	composer: string
-	console: Console
-	game: string
-	title: string
-}
-
-type Published = {
-	by: string
-	year: number
-}
-
-export type RemixOfOSTTrack = {
-	album: string
-	artist: string
-	catalog_number: string
-	collection: PositionInCount
-	// copyright: string
-	cover_art: {
-		data: Uint16Array,
-		format: ImageFormat,
-	}
-	encoded_by: Encoder[],
-	// game: string
-	ost: OST
-	published: Published
-	title: string
-	track: PositionInCount
-	webpage: string
+	comment?: TextData
 }

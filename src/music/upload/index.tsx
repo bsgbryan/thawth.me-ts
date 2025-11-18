@@ -1,5 +1,42 @@
 import { process } from "./ID3Tag"
-import type { RemixOfOSTTrack } from "./ID3Tag/types"
+import type { OST, PositionInCount, Published, RemixOfOSTTrack } from "./types"
+
+const artist = (name: string, contributions: string[], element: HTMLElement) => {
+	const node = document.createElement('li')
+	const name_element = document.createElement('p')
+	const contributions_node = document.createElement('ul')
+	
+	name_element.textContent = name
+	
+	for (const c of contributions) {
+		const contribution_node = document.createElement('li')
+		const contributions_element = document.createElement('p')
+
+		contributions_element.textContent = c
+		
+		contribution_node.appendChild(contributions_element)
+		contributions_node.appendChild(contribution_node)
+	}
+	
+	node.appendChild(name_element)
+	node.appendChild(contributions_node)
+	
+	element.appendChild(node)
+}
+
+const artists = (data: RemixOfOSTTrack) => {
+	const primary_element = document.querySelector('#song .artists.field ul.primary')! as HTMLImageElement
+	const primary = data.artists.primary
+
+	for (const [name, contributions] of Object.entries(primary))
+		artist(name, contributions, primary_element)
+
+	const featuring_element = document.querySelector('#song .artists.field ul.featuring')! as HTMLImageElement
+	const featuring = data.artists.featuring
+
+	for (const [name, contributions] of Object.entries(featuring))
+		artist(name, contributions, featuring_element)
+}
 
 const cover_art = (data: RemixOfOSTTrack) => {
 	const cover_art = document.querySelector('#song .cover-art.field img')! as HTMLImageElement
@@ -32,40 +69,49 @@ const encoders = (data: RemixOfOSTTrack) => {
 }
 
 const field = (name: keyof RemixOfOSTTrack, data: RemixOfOSTTrack) => {
-	const album = document.querySelector(`#song .${name.replaceAll('_', '-')}.field p`)!
+	const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field p`)!
 
 	album.textContent = data[name] as string
 }
 
 const ost = (data: RemixOfOSTTrack) => {
-	subfield('ost', 'copyright', data)
-	subfield('ost', 'composer', data)
-	subfield('ost', 'console', data)
-	subfield('ost', 'game', data)
-	subfield('ost', 'title', data)
+	subfield<OST>('ost', 'copyright', data)
+	subfield<OST>('ost', 'composer', data)
+	subfield<OST>('ost', 'console', data)
+	subfield<OST>('ost', 'game', data)
+	subfield<OST>('ost', 'title', data)
 }
 
-const position_in_count = (name: "collection" | "track", data: RemixOfOSTTrack) => {
-	subfield(name, 'position', data)
-	subfield(name, 'count', data)
+const position_in_count = (name: 'collection' | 'track', data: RemixOfOSTTrack) => {
+	subfield<PositionInCount>(name, 'position', data)
+	subfield<PositionInCount>(name, 'count', data)
 }
 
-const subfield = (name: keyof RemixOfOSTTrack, inner: string, data: RemixOfOSTTrack) => {
-	const album = document.querySelector(`#song .${name.replaceAll('_', '-')}.field .${inner}`)!
+const subfield = <T,>(name: keyof RemixOfOSTTrack, inner: keyof T, data: RemixOfOSTTrack) => {
+	const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field .${inner}`)!
 
-	// @ts-expect-error
+	// @ts-expect-error I don't know how to make TS happy here
 	album.textContent = String(data[name][inner])
 }
 
+const published = (data: RemixOfOSTTrack) => {
+	for (const f of ['by', 'year']) {
+		const field = document.querySelector(`#song .published.field .${f}`)!
+	
+		field.textContent = String(data.published[f as keyof Published])
+	}
+}
+
 const update = (data: RemixOfOSTTrack) => {
+	field('accompaniment', data)
 	field('album', data)
-	field('artist', data)
+	artists(data)
 	field('catalog_number', data)
 	position_in_count('collection', data)
 	cover_art(data)
 	encoders(data)
 	ost(data)
-	field('published', data)
+	published(data)
 	field('title', data)
 	position_in_count('track', data)
 	field('webpage', data)
@@ -78,7 +124,7 @@ const readTags = (event) => {
 	window.jsmediatags.read(file, {
 		// @ts-expect-error
 	  onSuccess: function(obj) {
-			console.log(obj)
+			console.log(obj.tags)
 			const processed = process(obj.tags)
 	    console.log(processed)
 			update(processed)
@@ -97,13 +143,20 @@ export default () =>
 			<input type="file" id="file" onChange={readTags} />
 		</form>
 		<section id="song">
+			<div clazz="field accompaniment">
+				<h3>Accompaniment</h3>
+				<p></p>
+			</div>
 			<div clazz="field album">
 				<h3>Album</h3>
 				<p></p>
 			</div>
-			<div clazz="field artist">
+			<div clazz="field artists">
 				<h3>Artist</h3>
-				<p></p>
+				<h5>Primary</h5>
+				<ul clazz="primary"></ul>
+				<h5>Featuring</h5>
+				<ul clazz="featuring"></ul>
 			</div>
 			<div clazz="field catalog-number">
 				<h3>Catalog Number</h3>
@@ -140,7 +193,10 @@ export default () =>
 			</div>
 			<div clazz="field published">
 				<h3>Published</h3>
-				<p></p>
+				<h5>By</h5>
+				<p clazz="by"></p>
+				<h5>Year</h5>
+				<p clazz="year"></p>
 			</div>
 			<div clazz="field title">
 				<h3>Title</h3>
