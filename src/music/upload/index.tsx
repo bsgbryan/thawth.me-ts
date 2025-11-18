@@ -88,7 +88,7 @@ const position_in_count = (name: 'collection' | 'track', data: RemixOfOSTTrack) 
 }
 
 const subfield = <T,>(name: keyof RemixOfOSTTrack, inner: keyof T, data: RemixOfOSTTrack) => {
-	const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field .${inner}`)!
+	const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field .${String(inner)}`)!
 
 	// @ts-expect-error I don't know how to make TS happy here
 	album.textContent = String(data[name][inner])

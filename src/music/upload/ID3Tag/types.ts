@@ -27,6 +27,7 @@ export enum TagName {
 
 export enum ImageFormat {
 	png = 'image/png',
+	unknown = '???',
 }
 
 export type Tag<D, N = TagName> = {

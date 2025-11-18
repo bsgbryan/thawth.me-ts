@@ -11,6 +11,7 @@ export type Artists = {
 
 export enum Console {
 	SNES = 'SNES',
+	Unknown = '???',
 }
 
 export type Credits = {
