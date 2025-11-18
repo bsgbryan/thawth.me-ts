@@ -14,14 +14,14 @@ import {
 import artists from "."
 
 const comment = (text: string): TextData => ({
-	language: 'english',
-	short_description: 'A comment used for testing',
+	language: "english",
+	short_description: "A comment used for testing",
 	text,
 })
 
 const tag = (data: string): Tag<string, TagName.TPE1> => ({
 	data,
-	description: 'A tag used for testing',
+	description: "A tag used for testing",
 	id: TagName.TPE1,
 	size: 42,
 })
@@ -54,7 +54,7 @@ describe('artists', () => {
 				'Com Truise': [],
 			})
 		})
-		
+
 		it('looks for contributions per-artist in the comment property', () => {
 			const tags: ID3Tags = {
 				comment: comment('http://example.url\r\n\r\nBon JonJovy: guitar, vocals\r\nCom Truise: the need, for speed'),
@@ -98,7 +98,7 @@ describe('artists', () => {
 				'FooBar': [],
 			})
 		})
-		
+
 		it('looks for contributions per-artist in the comment property', () => {
 			const tags: ID3Tags = {
 				comment: comment('http://example.url\r\n\r\nBon JonJovy: guitar, vocals\r\nCom Truise: the need, for speed'),
