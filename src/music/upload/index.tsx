@@ -1,5 +1,11 @@
 import { process } from "./ID3Tag"
-import type { OST, PositionInCount, Published, RemixOfOSTTrack } from "./types"
+
+import type {
+	OST,
+	PositionInCount,
+	Published,
+	RemixOfOSTTrack,
+} from "./types"
 
 const artist = (name: string, contributions: string[], element: HTMLElement) => {
 	const node = document.createElement('li')
@@ -76,9 +82,11 @@ const encoders = (data: RemixOfOSTTrack) => {
 }
 
 const field = (name: keyof RemixOfOSTTrack, data: RemixOfOSTTrack) => {
-	const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field p`)!
-
-	album.textContent = data[name] as string
+	if (data[name]) {
+		const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field p`)!
+	
+		album.textContent = data[name] as string
+	}
 }
 
 const ost = (data: RemixOfOSTTrack) => {

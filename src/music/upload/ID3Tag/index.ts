@@ -1,10 +1,18 @@
 import artists from "../artists"
 import encoders from "../encoders"
 import titles from "../titles"
-import webpage from "../../webpage"
+import webpage from "../webpage"
 
-import { Console, type OST, type RemixOfOSTTrack } from "../types"
-import { ImageFormat, type ID3Tags } from "./types"
+import {
+	Console,
+	type OST,
+	type RemixOfOSTTrack,
+} from "../types"
+
+import {
+	ImageFormat,
+	type ID3Tags,
+} from "./types"
 
 export const process = (input: ID3Tags): RemixOfOSTTrack => {
 	const set = input.TPOS?.data?.split('/') ?? []
