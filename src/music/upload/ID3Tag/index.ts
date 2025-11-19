@@ -1,5 +1,6 @@
 import artists from "../artists"
 import encoders from "../encoders"
+import lyrics from "../lyrics"
 import titles from "../titles"
 import webpage from "../webpage"
 
@@ -39,6 +40,7 @@ export const process = (input: ID3Tags): RemixOfOSTTrack => {
 			data: input.APIC?.data?.data,
 		},
 		encoded_by: encoders(input),
+		lyrics: lyrics(input),
 		ost,
 		published: {
 			by: input.TPUB?.data,

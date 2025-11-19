@@ -91,6 +91,22 @@ const field = (name: keyof RemixOfOSTTrack, data: RemixOfOSTTrack) => {
 	}
 }
 
+const lyrics = (data: RemixOfOSTTrack) => {
+	if (data.lyrics) {
+		const node = document.querySelector(`#song .lyrics.field ol`) as HTMLOListElement
+	
+		for (const l of data.lyrics) {
+			const li = document.createElement('li')
+			const p = document.createElement('p')
+
+			p.textContent = l
+
+			li.appendChild(p)
+			node.appendChild(li)
+		}
+	}
+}
+
 const ost = (data: RemixOfOSTTrack) => {
 	subfield<OST>('ost', 'copyright', data)
 	subfield<OST>('ost', 'composer', data)
@@ -132,6 +148,7 @@ const update = (data: RemixOfOSTTrack) => {
 	position_in_count('collection', data)
 	cover_art(data)
 	encoders(data)
+	lyrics(data)
 	ost(data)
 	published(data)
 	field('title', data)
@@ -199,6 +216,10 @@ export default () =>
 			<div clazz="field encoders">
 				<h3>Encoders</h3>
 				<ul></ul>
+			</div>
+			<div clazz="field lyrics">
+				<h3>Lyrics</h3>
+				<ol></ol>
 			</div>
 			<div clazz="field ost">
 				<h3>OST</h3>

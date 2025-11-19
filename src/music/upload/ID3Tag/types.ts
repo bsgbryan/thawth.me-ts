@@ -47,7 +47,7 @@ type ImageData = {
 export type LyricData = {
 	language: string
 	descriptor: string
-	text: string
+	lyrics: string
 }
 
 export type TextData = {

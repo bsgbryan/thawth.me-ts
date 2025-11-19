@@ -53,6 +53,7 @@ export type RemixOfOSTTrack = {
 	collection: PositionInCount
 	cover_art: CoverArt
 	encoded_by: Encoder[],
+	lyrics?: string[]
 	ost: OST
 	published: Published
 	title?: string
