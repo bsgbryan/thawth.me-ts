@@ -11,22 +11,22 @@ const artist = (name: string, contributions: string[], element: HTMLElement) => 
 	const node = document.createElement('li')
 	const name_element = document.createElement('p')
 	const contributions_node = document.createElement('ul')
-	
+
 	name_element.textContent = name
-	
+
 	for (const c of contributions) {
 		const contribution_node = document.createElement('li')
 		const contributions_element = document.createElement('p')
 
 		contributions_element.textContent = c
-		
+
 		contribution_node.appendChild(contributions_element)
 		contributions_node.appendChild(contribution_node)
 	}
-	
+
 	node.appendChild(name_element)
 	node.appendChild(contributions_node)
-	
+
 	element.appendChild(node)
 }
 
@@ -70,7 +70,7 @@ const encoder = (name?: string, email?: string) => {
 
 		emailNode.setAttribute('class', 'email')
 		emailNode.textContent = email
-	
+
 		node.appendChild(emailNode)
 	}
 
@@ -86,7 +86,7 @@ const encoders = (data: RemixOfOSTTrack) => {
 const field = (name: keyof RemixOfOSTTrack, data: RemixOfOSTTrack) => {
 	if (data[name]) {
 		const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field p`)!
-	
+
 		album.textContent = data[name] as string
 	}
 }
@@ -103,12 +103,13 @@ const lyrics = (data: RemixOfOSTTrack) => {
 				if (node) root.appendChild(node)
 				if (lines < data.lyrics.length) node = document.createElement('ol')
 			}
-			else {
+
+			if (l !== "") {
 				const li = document.createElement('li')
 				const p = document.createElement('p')
-	
+
 				p.textContent = l
-	
+
 				li.appendChild(p)
 				node?.appendChild(li)
 			}
@@ -133,7 +134,7 @@ const subfield = <T,>(name: keyof RemixOfOSTTrack, inner: keyof T, data: RemixOf
 	// @ts-expect-error I don't know how to make TS happy here
 	if (data[name][inner]) {
 		const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field .${String(inner)}`)!
-	
+
 		// @ts-expect-error I don't know how to make TS happy here
 		album.textContent = String(data[name][inner])
 	}
@@ -143,7 +144,7 @@ const published = (data: RemixOfOSTTrack) => {
 	for (const f of ['by', 'year']) {
 		if (data.published[f as keyof Published]) {
 			const field = document.querySelector(`#song .published.field .${f}`)!
-		
+
 			field.textContent = String(data.published[f as keyof Published])
 		}
 	}
