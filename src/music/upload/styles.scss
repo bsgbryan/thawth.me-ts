@@ -1,0 +1,68 @@
+#song {
+	display: grid;
+	grid-gap: 0.5rem;
+	grid-template-columns: repeat(3, 1fr);
+
+	> .field,
+	> .fields {
+		background-color: rgba(black, 0.5);
+		border-radius: 0.5rem;
+		display: flex;
+		height: min-content;
+		flex-direction: column;
+		
+		.name,
+		.email {
+			display: inline-block;
+			text-overflow: ellipsis;
+			text-wrap: nowrap;
+		}
+		
+		.email { padding-left: 0.25rem; }
+		
+		.name {
+			padding-right: 0.25rem;
+			width: 10rem;
+		}
+		
+		h3,
+		h5,
+		p {
+			font-family: sans-serif;
+			font-weight: 100;
+			margin: 0;
+		}
+
+		h3 {
+			background: linear-gradient(rgba(black, 0.125), rgba(black, 0.25));
+			color: rgba(white, 0.5);
+			font-size: 1.5rem;
+			padding: 0.75rem 1rem;
+		}
+		
+		h5 {
+			background: linear-gradient(rgba(black, 0.1), rgba(black, 0.15));
+			color: rgba(white, 0.4);
+			font-size: 1.125rem;
+			padding: 0.5rem 1rem;
+		}
+		
+		img {
+			width: 100%;
+			border-bottom-left-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+		}
+		
+		p {
+			color: rgba(white, 0.75);
+			padding: 0.5rem 1rem;
+		}
+		
+		ol,
+		ul {
+			list-style: none;
+			margin: 0.5rem 0;
+			padding-left: 0;
+		}
+	}
+}
