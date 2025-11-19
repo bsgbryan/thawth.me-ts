@@ -93,16 +93,25 @@ const field = (name: keyof RemixOfOSTTrack, data: RemixOfOSTTrack) => {
 
 const lyrics = (data: RemixOfOSTTrack) => {
 	if (data.lyrics) {
-		const node = document.querySelector(`#song .lyrics.field ol`) as HTMLOListElement
-	
+		const root = document.querySelector(`#song .lyrics.field`) as HTMLOListElement
+
+		let lines = 0
+		let node
+
 		for (const l of data.lyrics) {
-			const li = document.createElement('li')
-			const p = document.createElement('p')
-
-			p.textContent = l
-
-			li.appendChild(p)
-			node.appendChild(li)
+			if (lines++ === 0 || l === "" || lines === data.lyrics.length) {
+				if (node) root.appendChild(node)
+				if (lines < data.lyrics.length) node = document.createElement('ol')
+			}
+			else {
+				const li = document.createElement('li')
+				const p = document.createElement('p')
+	
+				p.textContent = l
+	
+				li.appendChild(p)
+				node?.appendChild(li)
+			}
 		}
 	}
 }
@@ -219,7 +228,6 @@ export default () =>
 			</div>
 			<div clazz="field lyrics">
 				<h3>Lyrics</h3>
-				<ol></ol>
 			</div>
 			<div clazz="field ost">
 				<h3>OST</h3>
