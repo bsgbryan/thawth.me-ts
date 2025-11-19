@@ -10,25 +10,6 @@ export default () => <>
 				<h3>Album</h3>
 				<p></p>
 			</div>
-			<div clazz="field collection">
-				<h3>Collection</h3>
-				<p>
-					<span clazz="position"></span>
-					<span> of </span>
-					<span clazz="count"></span>
-				</p>
-			</div>
-			<div clazz="field catalog-number">
-				<h3>Catalog Number</h3>
-				<p></p>
-			</div>
-			<div clazz="field published">
-				<h3>Published</h3>
-				<h5>By</h5>
-				<p clazz="by"></p>
-				<h5>Year</h5>
-				<p clazz="year"></p>
-			</div>
 			<div clazz="field title">
 				<h3>Title</h3>
 				<p></p>
@@ -40,6 +21,25 @@ export default () => <>
 					<span> of </span>
 					<span clazz="count"></span>
 				</p>
+			</div>
+			<div clazz="field collection">
+				<h3>Collection</h3>
+				<p>
+					<span clazz="position"></span>
+					<span> of </span>
+					<span clazz="count"></span>
+				</p>
+			</div>
+			<div clazz="field published">
+				<h3>Published</h3>
+				<h5>By</h5>
+				<p clazz="by"></p>
+				<h5>Year</h5>
+				<p clazz="year"></p>
+			</div>
+			<div clazz="field catalog-number">
+				<h3>Catalog Number</h3>
+				<p></p>
 			</div>
 			<div clazz="field webpage">
 				<h3>Webpage</h3>
@@ -61,7 +61,7 @@ export default () => <>
 		</div>
 		<div clazz="fields">
 			<div clazz="field artists">
-				<h3>Artist</h3>
+				<h3>Artists</h3>
 				<h5>Primary</h5>
 				<ul clazz="primary"></ul>
 				<h5>Featuring</h5>
