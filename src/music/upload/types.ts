@@ -60,6 +60,6 @@ export type RemixOfOSTTrack = {
 }
 
 export type Titles = {
-	original: string
-	remix: string
+	original?: string
+	remix?: string
 }
