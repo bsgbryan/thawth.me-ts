@@ -45,10 +45,12 @@ const artists = (data: RemixOfOSTTrack) => {
 }
 
 const cover_art = (data: RemixOfOSTTrack) => {
-	const cover_art = document.querySelector('#song .cover-art.field img')! as HTMLImageElement
-	const url = URL.createObjectURL(new Blob([new Uint8Array(data.cover_art.data).buffer]))
-	cover_art.src = url
-	cover_art.onload = e => URL.revokeObjectURL(url)
+	if (data.cover_art.data) {
+		const cover_art = document.querySelector('#song .cover-art.field img')! as HTMLImageElement
+		const url = URL.createObjectURL(new Blob([new Uint8Array(data.cover_art.data).buffer]))
+		cover_art.src = url
+		cover_art.onload = e => URL.revokeObjectURL(url)
+	}
 }
 
 const encoder = (name?: string, email?: string) => {
@@ -103,17 +105,22 @@ const position_in_count = (name: 'collection' | 'track', data: RemixOfOSTTrack) 
 }
 
 const subfield = <T,>(name: keyof RemixOfOSTTrack, inner: keyof T, data: RemixOfOSTTrack) => {
-	const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field .${String(inner)}`)!
-
 	// @ts-expect-error I don't know how to make TS happy here
-	album.textContent = String(data[name][inner])
+	if (data[name][inner]) {
+		const album = document.querySelector(`#song .${(name as string).replaceAll('_', '-')}.field .${String(inner)}`)!
+	
+		// @ts-expect-error I don't know how to make TS happy here
+		album.textContent = String(data[name][inner])
+	}
 }
 
 const published = (data: RemixOfOSTTrack) => {
 	for (const f of ['by', 'year']) {
-		const field = document.querySelector(`#song .published.field .${f}`)!
-	
-		field.textContent = String(data.published[f as keyof Published])
+		if (data.published[f as keyof Published]) {
+			const field = document.querySelector(`#song .published.field .${f}`)!
+		
+			field.textContent = String(data.published[f as keyof Published])
+		}
 	}
 }
 
