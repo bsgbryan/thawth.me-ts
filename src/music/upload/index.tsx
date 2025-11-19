@@ -45,19 +45,26 @@ const cover_art = (data: RemixOfOSTTrack) => {
 	cover_art.onload = e => URL.revokeObjectURL(url)
 }
 
-const encoder = (name: string, email: string) => {
+const encoder = (name?: string, email?: string) => {
 	const node = document.createElement('li')
-	const nameNode = document.createElement('p')
-	const emailNode = document.createElement('p')
 
-	nameNode.setAttribute('class', 'name')
-	emailNode.setAttribute('class', 'email')
+	if (name) {
+		const nameNode = document.createElement('p')
 
-	nameNode.textContent = name
-	emailNode.textContent = email
+		nameNode.setAttribute('class', 'name')
+		nameNode.textContent = name
 
-	node.appendChild(nameNode)
-	node.appendChild(emailNode)
+		node.appendChild(nameNode)
+	}
+
+	if (email) {
+		const emailNode = document.createElement('p')
+
+		emailNode.setAttribute('class', 'email')
+		emailNode.textContent = email
+	
+		node.appendChild(emailNode)
+	}
 
 	return node
 }
