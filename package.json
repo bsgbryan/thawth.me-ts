@@ -9,14 +9,14 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
-    "@rsbuild/plugin-sass": "^1"
+    "@rsbuild/plugin-sass": "^1.4.0"
   },
   "devDependencies": {
     "@bsgbryan/rnzlr": "link:@bsgbryan/rnzlr",
-    "@rsbuild/core": "^1",
-    "@rsbuild/plugin-react": "^1",
+    "@rsbuild/core": "^1.6.7",
+    "@rsbuild/plugin-react": "^1.4.2",
     "@types/bun": "latest",
-    "@types/react": "^19.2.2",
-    "typescript": "^5"
+    "@types/react": "^19.2.6",
+    "typescript": "^5.9.3"
   }
 }
