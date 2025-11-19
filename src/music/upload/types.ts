@@ -28,7 +28,7 @@ export type OST = {
 	composer: string
 	console: Console
 	game: string
-	title: string
+	title?: string
 }
 
 export type PositionInCount = {
@@ -54,7 +54,7 @@ export type RemixOfOSTTrack = {
 	encoded_by: Encoder[],
 	ost: OST
 	published: Published
-	title: string
+	title?: string
 	track: PositionInCount
 	webpage: string
 }
