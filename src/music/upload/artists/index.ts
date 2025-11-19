@@ -7,8 +7,8 @@ export default (input: ID3Tags): Artists => {
 	const segments = comment?.text.trim().split('\r\n') ?? []
 	const blank = segments?.findIndex(s => s === '') + 1
 	const listed = comment?.text.split('\r\n').slice(blank) ?? []
-	const primary: Credits = {};
-	const featuring: Credits = {};
+	const primary: Credits = {}
+	const featuring: Credits = {}
 	const p = tokens[0]?.
 		trim().
 		split(',').

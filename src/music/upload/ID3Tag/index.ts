@@ -23,7 +23,7 @@ export const process = (input: ID3Tags): RemixOfOSTTrack => {
 		copyright: input.TCOP?.data,
 		game: input.TOAL?.data,
 		title: title.original,
-	};
+	}
 
 	return {
 		accompaniment: input.TPE2?.data,

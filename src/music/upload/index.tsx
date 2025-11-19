@@ -141,7 +141,7 @@ const update = (data: RemixOfOSTTrack) => {
 
 // @ts-expect-error
 const readTags = (event) => {
-	const file = event.target.files[0];
+	const file = event.target.files[0]
 	// @ts-expect-error
 	window.jsmediatags.read(file, {
 		// @ts-expect-error
@@ -153,7 +153,7 @@ const readTags = (event) => {
 	  },
 		// @ts-expect-error
 	  onError: function(error) {
-	    console.log(error);
+	    console.log(error)
 	  }
 	})
 }

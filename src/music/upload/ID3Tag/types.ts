@@ -44,6 +44,12 @@ type ImageData = {
 	type: string
 }
 
+export type LyricData = {
+	language: string
+	descriptor: string
+	text: string
+}
+
 export type TextData = {
 	language: string
 	short_description: string
@@ -80,4 +86,5 @@ export type ID3Tags = {
 	WXXX?: Tag<	 			  string, TagName.WXXX>
 
 	comment?: TextData
+	lyrics?: LyricData
 }

@@ -1,4 +1,4 @@
-import type { ID3Tags } from "../ID3Tag/types";
+import type { ID3Tags } from "../ID3Tag/types"
 
 export default (input: ID3Tags): string | undefined => {
 	const woar = input.WOAR?.data
