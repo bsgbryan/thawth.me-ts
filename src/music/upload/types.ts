@@ -19,8 +19,8 @@ export type Credits = {
 }
 
 export type Encoder = {
-	name: string
-	email: string
+	name?: string
+	email?: string
 }
 
 export type OST = {

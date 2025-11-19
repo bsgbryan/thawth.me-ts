@@ -1,0 +1,13 @@
+import type { ID3Tags } from "../ID3Tag/types"
+
+import type { Encoder } from "../types"
+
+export default (input: ID3Tags): Encoder[] =>
+	input.TENC?.data?.split(',').map(e => {
+		const tokens = e.split('(')
+		const name = tokens[0]?.trim() || undefined
+		const t = tokens[1]?.trim() || undefined
+		const email = t?.substring(0, t.length - 1)
+
+		return { name, email }
+	}) ?? []
