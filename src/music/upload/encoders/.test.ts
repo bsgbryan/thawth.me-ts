@@ -6,13 +6,13 @@ import {
 
 import {
   TagName,
-	TextData,
 	type ID3Tags,
 	type Tag,
 } from "../ID3Tag/types"
 
-import encoders from "."
 import { Encoder } from "../types"
+
+import encoders from "."
 
 const tag = (data: string): Tag<string, TagName.TENC> => ({
 	data,
