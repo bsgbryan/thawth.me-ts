@@ -47,19 +47,6 @@ export default () =>
 					<p></p>
 				</div>
 			</div>
-			<div clazz="fields">
-				<div clazz="field artists">
-					<h3>Artist</h3>
-					<h5>Primary</h5>
-					<ul clazz="primary"></ul>
-					<h5>Featuring</h5>
-					<ul clazz="featuring"></ul>
-				</div>
-				<div clazz="field encoders">
-					<h3>Encoders</h3>
-					<ul></ul>
-				</div>
-			</div>
 			<div clazz="field ost">
 				<h3>OST</h3>
 				<h5>Copyright</h5>
@@ -72,6 +59,19 @@ export default () =>
 				<p clazz="game"></p>
 				<h5>Title</h5>
 				<p clazz="title"></p>
+			</div>
+			<div clazz="fields">
+				<div clazz="field artists">
+					<h3>Artist</h3>
+					<h5>Primary</h5>
+					<ul clazz="primary"></ul>
+					<h5>Featuring</h5>
+					<ul clazz="featuring"></ul>
+				</div>
+				<div clazz="field encoders">
+					<h3>Encoders</h3>
+					<ul></ul>
+				</div>
 			</div>
 			<div clazz="field cover-art">
 				<h3>Cover Art</h3>
