@@ -1,17 +1,6 @@
-type LineProps = {
-	words: string
-}
-
-const Line = ({ words }: LineProps) =>
-	<li><p>{words}</p></li>
-
 type LyricsProps = {
 	lines?: string[]
 }
-
-const Verse = ({ lines }: LyricsProps) =>
-	<ol>{lines?.map(l => <Line words={l} />)}</ol>
-
 const Lyrics = ({ lines }: LyricsProps) => {
 	const verses: string[][] = []
 	let current: string[] = []
@@ -26,7 +15,7 @@ const Lyrics = ({ lines }: LyricsProps) => {
 
 	return <div clazz="field lyrics">
 		<h3>Lyrics</h3>
-		<>{verses.map(v => <Verse lines={v} />)}</>
+		<>{verses.map(v => <ol>{v.map(l => <li><p>{l}</p></li>)}</ol>)}</>
 	</div>
 }
 
