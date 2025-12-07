@@ -12,6 +12,8 @@ const Lyrics = ({ lines }: LyricsProps) => {
 		}
 		else current.push(l)
 	}
+	
+	verses.push(current)
 
 	return <div clazz="field lyrics">
 		<h3>Lyrics</h3>
