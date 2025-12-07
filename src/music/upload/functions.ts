@@ -168,20 +168,12 @@ const update = (data: RemixOfOSTTrack) => {
 }
 
 // @ts-expect-error
-export const readTags = (event) => {
+export const readTags = (rerender: CallableFunction) => (event) => {
 	const file = event.target.files[0]
 	// @ts-expect-error
 	window.jsmediatags.read(file, {
 		// @ts-expect-error
-	  onSuccess: function(obj) {
-			console.log(obj.tags)
-			const processed = process(obj.tags)
-	    console.log(processed)
-			update(processed)
-	  },
-		// @ts-expect-error
-	  onError: function(error) {
-	    console.log(error)
-	  }
+	  onSuccess: (obj) => rerender(process(obj.tags)),
+		onError: console.log
 	})
 }
