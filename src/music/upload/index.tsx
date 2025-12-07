@@ -2,6 +2,26 @@ import { Component } from "@bsgbryan/rnzlr"
 import { readTags } from "./functions"
 import type { RemixOfOSTTrack } from "./types"
 
+type TrackProps = {
+	count?: number
+	position?: number
+}
+
+const Track = ({
+	count,
+	position,
+}: TrackProps) => {
+	console.log(count, position)
+	return <div clazz="field track">
+		<h3>Track</h3>
+		<p>
+			<span clazz="position">{position}</span>
+			<span> of </span>
+			<span clazz="count">{count}</span>
+		</p>
+	</div>
+}
+
 const Section = ({
 	artists,
 	collection,
@@ -16,8 +36,9 @@ const Section = ({
 	lyrics,
 	title,
 	webpage,
-}: RemixOfOSTTrack) =>
-	<section id="song">
+}: RemixOfOSTTrack) => {
+	console.log({ track })
+	return <section id="song">
 		<div clazz="fields">
 			<div clazz="field album">
 				<h3>Album</h3>
@@ -27,14 +48,7 @@ const Section = ({
 				<h3>Title</h3>
 				<p>{title}</p>
 			</div>
-			<div clazz="field track">
-				<h3>Track</h3>
-				<p>
-					<span clazz="position">{track.position}</span>
-					<span> of </span>
-					<span clazz="count">{track.count}</span>
-				</p>
-			</div>
+			<Track {...track} />
 			<div clazz="field collection">
 				<h3>Collection</h3>
 				<p>
@@ -93,6 +107,7 @@ const Section = ({
 			<h3>Lyrics</h3>
 		</div>
 	</section>
+}
 
 type Props = {
 	callbacks: {
