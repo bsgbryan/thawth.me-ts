@@ -1,8 +1,8 @@
-import artists from "../artists"
-import encoders from "../encoders"
-import lyrics from "../lyrics"
-import titles from "../titles"
-import webpage from "../webpage"
+import artists from "../processors/artists"
+import encoders from "../processors/encoders"
+import lyrics from "../processors/lyrics"
+import titles from "../processors/titles"
+import webpage from "../processors/webpage"
 
 import {
 	type OST,
