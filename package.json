@@ -15,8 +15,9 @@
     "@bsgbryan/rnzlr": "link:@bsgbryan/rnzlr",
     "@rsbuild/core": "^1.6.7",
     "@rsbuild/plugin-react": "^1.4.2",
-    "@types/bun": "latest",
+    "@types/bun": "^1.3.5",
     "@types/react": "^19.2.6",
     "typescript": "^5.9.3"
-  }
+  },
+  "module": "src/index.tsx"
 }
